@@ -5,7 +5,8 @@ import Person from "./Person/Person";
 function App() {
   return (
     <div className="App">
-      <Person></Person>
+      <Person name="Dragana" age="27" />
+      <Person name="Mladen" age="31" />
     </div>
   );
   // return React.createElement(
