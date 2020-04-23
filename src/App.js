@@ -6,7 +6,9 @@ function App() {
   return (
     <div className="App">
       <Person name="Dragana" age="27" />
-      <Person name="Mladen" age="31" />
+      <Person name="Mladen" age="31">
+        My Hobbies: Racing
+      </Person>
     </div>
   );
   // return React.createElement(
