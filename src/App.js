@@ -11,11 +11,11 @@ const App = (props) => {
     otherState: "some other value",
   });
 
-  const [otherState, setOtherState] = useState({
-    otherState: "some other value",
-  });
+  // const [otherState, setOtherState] = useState({
+  //   otherState: "some other value",
+  // });
 
-  console.log(perosnsState, otherState);
+  // console.log(perosnsState, otherState);
 
   const switchNameHandler = (newName) => {
     console.log("clicked");
@@ -29,11 +29,21 @@ const App = (props) => {
     });
   };
 
+  const nameChangeHandler = (event) => {
+    setPersonsState({
+      persons: [
+        { name: event.target.value, age: 27 },
+        { name: "Mladjo", age: 31 },
+      ],
+    });
+  };
+
   return (
     <div className="App">
       <Person
         name={perosnsState.persons[0].name}
         age={perosnsState.persons[0].age}
+        changed={nameChangeHandler}
       />
       <Person
         name={perosnsState.persons[1].name}
