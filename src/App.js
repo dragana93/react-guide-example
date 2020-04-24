@@ -1,65 +1,90 @@
-import React, { useState } from "react";
+import React, { useState, Component } from "react";
 import "./App.css";
-import Person from "./Person/Person";
+// import Person from "./Person/Person";
 
-const App = (props) => {
-  const [perosnsState, setPersonsState] = useState({
-    persons: [
-      { name: "Dragana", age: 27 },
-      { name: "Mladen", age: 31 },
-    ],
-    otherState: "some other value",
-  });
+import UserInput from "./UserInput/UserInput";
+import UserOutput from "./UserOutput/UserOutput";
 
-  // const [otherState, setOtherState] = useState({
+class App extends Component {
+  // state = {
+  //   persons: [
+  //     { name: "Dragana", age: 27 },
+  //     { name: "Mladen", age: 31 },
+  //   ],
   //   otherState: "some other value",
-  // });
+  // };
 
-  // console.log(perosnsState, otherState);
+  state = {
+    username: "supergaga",
+  };
 
-  const switchNameHandler = (newName) => {
-    console.log("clicked");
-    // this.state.persons[0].name = "Gaga";
-    setPersonsState({
-      persons: [
-        { name: newName, age: 27 },
-        { name: "Mladjo", age: 31 },
-      ],
-      // otherState: perosnsState.otherState,
+  // switchNameHandler = (newName) => {
+  //   console.log("clicked");
+  //   // this.state.persons[0].name = "Gaga";
+  //   this.setState({
+  //     persons: [
+  //       { name: newName, age: 27 },
+  //       { name: "Mladjo", age: 31 },
+  //     ],
+  //     // otherState: perosnsState.otherState,
+  //   });
+  // };
+
+  // nameChangeHandler = (event) => {
+  //   this.setState({
+  //     persons: [
+  //       { name: event.target.value, age: 27 },
+  //       { name: "Mladjo", age: 31 },
+  //     ],
+  //   });
+  // };
+
+  usernameChangedHendler = (event) => {
+    this.setState({
+      username: event.target.value,
     });
   };
 
-  const nameChangeHandler = (event) => {
-    setPersonsState({
-      persons: [
-        { name: event.target.value, age: 27 },
-        { name: "Mladjo", age: 31 },
-      ],
-    });
-  };
-
-  return (
-    <div className="App">
-      <Person
-        name={perosnsState.persons[0].name}
-        age={perosnsState.persons[0].age}
-        changed={nameChangeHandler}
-      />
-      <Person
-        name={perosnsState.persons[1].name}
-        age={perosnsState.persons[1].age}
-        click={switchNameHandler.bind(this, "Ga!")}
-      >
-        My Hobbies: Racing
-      </Person>
-      <button onClick={() => switchNameHandler("Gaga!!")}>Switch Name</button>
-    </div>
-  );
-  // return React.createElement(
-  //   "div",
-  //   { className: "App" },
-  //   React.createElement("h1", null, "Hi, I'm a React app")
-  // );
-};
+  render() {
+    // const style = {
+    //   backgroundColor: "white",
+    //   font: "ingerit",
+    //   border: "1px solid blue",
+    //   padding: "8px",
+    //   cursor: "pointer",
+    // };
+    return (
+      <div className="App">
+        {/* <Person
+          name={this.state.persons[0].name}
+          age={this.state.persons[0].age}
+          changed={this.nameChangeHandler}
+        />
+        <Person
+          name={this.state.persons[1].name}
+          age={this.state.persons[1].age}
+          click={this.switchNameHandler.bind(this, "Ga!")}
+        >
+          My Hobbies: Racing
+        </Person>
+        <button style={style} onClick={() => this.switchNameHandler("Gaga!!")}>
+          Switch Name
+        </button> */}
+        <UserInput
+          changed={this.usernameChangedHendler}
+          currentName={this.state.username}
+        />
+        <UserOutput userName={this.state.username} />
+        <UserOutput userName={this.state.username} />
+        <UserOutput userName="gaga" />
+      </div>
+    );
+    // return React.createElement(
+    //   "div",
+    //   { className: "App" },
+    //   React.createElement("h1", null, "Hi, I'm a React app")
+    // );
+  }
+}
 
 export default App;
