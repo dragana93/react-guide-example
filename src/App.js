@@ -6,15 +6,21 @@ import person from "./Person/Person";
 // import UserInput from "./UserInput/UserInput";
 // import UserOutput from "./UserOutput/UserOutput";
 
+import Validation from "./Validation/Validation";
+import Char from "./Char/Char";
+
 class App extends Component {
   state = {
-    persons: [
-      { id: "1", name: "Dragana", age: 27 },
-      { id: "2", name: "Mladen", age: 31 },
-    ],
-    otherState: "some other value",
-    showPersons: false,
+    userInput: "",
   };
+  // state = {
+  //   persons: [
+  //     { id: "1", name: "Dragana", age: 27 },
+  //     { id: "2", name: "Mladen", age: 31 },
+  //   ],
+  //   otherState: "some other value",
+  //   showPersons: false,
+  // };
 
   // state = {
   //   username: "supergaga",
@@ -57,6 +63,17 @@ class App extends Component {
     });
   };
 
+  inputChangedHandler = (event) => {
+    this.setState({ userInput: event.target.value });
+  };
+
+  deleteCharHandler = (index) => {
+    const text = [...this.state.userInput.split("")];
+    text.splice(index, 1);
+    const updatedText = text.join("");
+    this.setState({ userInput: updatedText });
+  };
+
   render() {
     const style = {
       backgroundColor: "white",
@@ -85,6 +102,16 @@ class App extends Component {
       );
     }
 
+    const charList = this.state.userInput.split("").map((ch, index) => {
+      return (
+        <Char
+          clicked={() => this.deleteCharHandler(index)}
+          character={ch}
+          key={index}
+        />
+      );
+    });
+
     return (
       <div className="App">
         {/* <div>
@@ -101,11 +128,22 @@ class App extends Component {
             My Hobbies: Racing
           </Person>
         </div> */}
-        {persons}
+
+        <input
+          type="text"
+          onChange={this.inputChangedHandler}
+          value={this.state.userInput}
+        />
+        <p>{this.state.userInput}</p>
+        <Validation inputLength={this.state.userInput.length} />
+        {charList}
+
+        {/* {persons}
 
         <button style={style} onClick={this.togglePersonsHandler}>
           Toggle Persons
-        </button>
+        </button> */}
+
         {/* <UserInput
           changed={this.usernameChangedHendler}
           currentName={this.state.username}
