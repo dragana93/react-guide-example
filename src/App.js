@@ -1,12 +1,26 @@
 import React, { Component } from "react";
 import "./App.css";
 import Person from "./Person/Person";
+import styled from "styled-components";
 
 // import UserInput from "./UserInput/UserInput";
 // import UserOutput from "./UserOutput/UserOutput";
 
 // import Validation from "./Validation/Validation";
 // import Char from "./Char/Char";
+
+const StyledButton = styled.button`
+  background-color: "green";
+  color: white;
+  font: ingerit;
+  border: 1px solid blue;
+  padding: 8px;
+  cursor: pointer;
+  &:hover {
+    background-color: lightgreen;
+    color: black;
+  }
+`;
 
 class App extends Component {
   // state = {
@@ -161,9 +175,9 @@ class App extends Component {
 
         {persons}
 
-        <button style={style} onClick={this.togglePersonsHandler}>
+        <StyledButton onClick={this.togglePersonsHandler}>
           Toggle Persons
-        </button>
+        </StyledButton>
 
         {/* <UserInput
           changed={this.usernameChangedHendler}
