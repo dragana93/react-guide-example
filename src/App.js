@@ -2,25 +2,27 @@ import React, { Component } from "react";
 import "./App.css";
 import Person from "./Person/Person";
 import person from "./Person/Person";
+import { findRenderedComponentWithType } from "react-dom/test-utils";
 
 // import UserInput from "./UserInput/UserInput";
 // import UserOutput from "./UserOutput/UserOutput";
 
-import Validation from "./Validation/Validation";
-import Char from "./Char/Char";
+// import Validation from "./Validation/Validation";
+// import Char from "./Char/Char";
 
 class App extends Component {
-  state = {
-    userInput: "",
-  };
   // state = {
-  //   persons: [
-  //     { id: "1", name: "Dragana", age: 27 },
-  //     { id: "2", name: "Mladen", age: 31 },
-  //   ],
-  //   otherState: "some other value",
-  //   showPersons: false,
+  //   userInput: "",
   // };
+
+  state = {
+    persons: [
+      { id: "1", name: "Dragana", age: 27 },
+      { id: "2", name: "Mladen", age: 31 },
+    ],
+    otherState: "some other value",
+    showPersons: false,
+  };
 
   // state = {
   //   username: "supergaga",
@@ -63,20 +65,21 @@ class App extends Component {
     });
   };
 
-  inputChangedHandler = (event) => {
-    this.setState({ userInput: event.target.value });
-  };
+  // inputChangedHandler = (event) => {
+  //   this.setState({ userInput: event.target.value });
+  // };
 
-  deleteCharHandler = (index) => {
-    const text = [...this.state.userInput.split("")];
-    text.splice(index, 1);
-    const updatedText = text.join("");
-    this.setState({ userInput: updatedText });
-  };
+  // deleteCharHandler = (index) => {
+  //   const text = [...this.state.userInput.split("")];
+  //   text.splice(index, 1);
+  //   const updatedText = text.join("");
+  //   this.setState({ userInput: updatedText });
+  // };
 
   render() {
     const style = {
-      backgroundColor: "white",
+      backgroundColor: "green",
+      color: "white",
       font: "ingerit",
       border: "1px solid blue",
       padding: "8px",
@@ -100,17 +103,27 @@ class App extends Component {
           })}
         </div>
       );
+      style.backgroundColor = "red";
     }
 
-    const charList = this.state.userInput.split("").map((ch, index) => {
-      return (
-        <Char
-          clicked={() => this.deleteCharHandler(index)}
-          character={ch}
-          key={index}
-        />
-      );
-    });
+    // const charList = this.state.userInput.split("").map((ch, index) => {
+    //   return (
+    //     <Char
+    //       clicked={() => this.deleteCharHandler(index)}
+    //       character={ch}
+    //       key={index}
+    //     />
+    //   );
+    // });
+
+    let classes = [];
+    if (this.state.persons.length <= 2) {
+      classes.push("red"); // classes = ["red"]
+    }
+
+    if (this.state.persons.length <= 1) {
+      classes.push("bold"); // classes = ["red","bold"]
+    }
 
     return (
       <div className="App">
@@ -129,20 +142,21 @@ class App extends Component {
           </Person>
         </div> */}
 
-        <input
+        {/* <input
           type="text"
           onChange={this.inputChangedHandler}
           value={this.state.userInput}
         />
         <p>{this.state.userInput}</p>
         <Validation inputLength={this.state.userInput.length} />
-        {charList}
+        {charList} */}
+        <p className={classes.join(" ")}>This is realy working</p>
 
-        {/* {persons}
+        {persons}
 
         <button style={style} onClick={this.togglePersonsHandler}>
           Toggle Persons
-        </button> */}
+        </button>
 
         {/* <UserInput
           changed={this.usernameChangedHendler}
