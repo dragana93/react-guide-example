@@ -10,14 +10,14 @@ import styled from "styled-components";
 // import Char from "./Char/Char";
 
 const StyledButton = styled.button`
-  background-color: "green";
+  background-color: ${(props) => (props.alt ? "red" : "green")};
   color: white;
   font: ingerit;
   border: 1px solid blue;
   padding: 8px;
   cursor: pointer;
   &:hover {
-    background-color: lightgreen;
+    background-color: ${(props) => (props.alt ? "salmon" : "lightgreen")};
     color: black;
   }
 `;
@@ -119,11 +119,11 @@ class App extends Component {
           })}
         </div>
       );
-      style.backgroundColor = "red";
-      style[":hover"] = {
-        backgroundColor: "salmon",
-        color: "black",
-      };
+      // style.backgroundColor = "red";
+      // style[":hover"] = {
+      //   backgroundColor: "salmon",
+      //   color: "black",
+      // };
     }
 
     // const charList = this.state.userInput.split("").map((ch, index) => {
@@ -175,7 +175,10 @@ class App extends Component {
 
         {persons}
 
-        <StyledButton onClick={this.togglePersonsHandler}>
+        <StyledButton
+          alt={this.state.showPersons}
+          onClick={this.togglePersonsHandler}
+        >
           Toggle Persons
         </StyledButton>
 
