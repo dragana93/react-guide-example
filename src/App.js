@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
 import Person from "./Person/Person";
-import Radium from "radium";
 
 // import UserInput from "./UserInput/UserInput";
 // import UserOutput from "./UserOutput/UserOutput";
@@ -133,6 +132,7 @@ class App extends Component {
     }
 
     return (
+      // <StyleRoot>
       <div className="App">
         {/* <div>
           <Person
@@ -173,6 +173,7 @@ class App extends Component {
         <UserOutput userName={this.state.username} />
         <UserOutput userName="gaga" /> */}
       </div>
+      // </StyleRoot>
     );
     // return React.createElement(
     //   "div",
@@ -182,4 +183,4 @@ class App extends Component {
   }
 }
 
-export default Radium(App);
+export default App;
