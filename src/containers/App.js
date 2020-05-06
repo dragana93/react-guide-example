@@ -1,26 +1,13 @@
 import React, { Component } from "react";
 import "./App.css";
-import Person from "./Person/Person";
-import styled from "styled-components";
+import Persons from "../components/Persons/Persons";
+import Cockpit from "../components/Cockpit/Cockpit";
 
 // import UserInput from "./UserInput/UserInput";
 // import UserOutput from "./UserOutput/UserOutput";
 
 // import Validation from "./Validation/Validation";
 // import Char from "./Char/Char";
-
-const StyledButton = styled.button`
-  background-color: ${(props) => (props.alt ? "red" : "green")};
-  color: white;
-  font: ingerit;
-  border: 1px solid blue;
-  padding: 8px;
-  cursor: pointer;
-  &:hover {
-    background-color: ${(props) => (props.alt ? "salmon" : "lightgreen")};
-    color: black;
-  }
-`;
 
 class App extends Component {
   // state = {
@@ -89,41 +76,15 @@ class App extends Component {
   // };
 
   render() {
-    const style = {
-      backgroundColor: "green",
-      color: "white",
-      font: "ingerit",
-      border: "1px solid blue",
-      padding: "8px",
-      cursor: "pointer",
-      ":hover": {
-        backgroundColor: "lightgreen",
-        color: "black",
-      },
-    };
-
     let persons = null;
     if (this.state.showPersons) {
       persons = (
-        <div>
-          {this.state.persons.map((person, index) => {
-            return (
-              <Person
-                click={() => this.deletePersonHandler(index)}
-                name={person.name}
-                age={person.age}
-                key={person.id}
-                changed={(event) => this.nameChangeHandler(event, person.id)}
-              />
-            );
-          })}
-        </div>
+        <Persons
+          persons={this.state.persons}
+          clicked={this.deletePersonHandler}
+          changed={this.nameChangeHandler}
+        />
       );
-      // style.backgroundColor = "red";
-      // style[":hover"] = {
-      //   backgroundColor: "salmon",
-      //   color: "black",
-      // };
     }
 
     // const charList = this.state.userInput.split("").map((ch, index) => {
@@ -136,33 +97,9 @@ class App extends Component {
     //   );
     // });
 
-    let classes = [];
-    if (this.state.persons.length <= 2) {
-      classes.push("red"); // classes = ["red"]
-    }
-
-    if (this.state.persons.length <= 1) {
-      classes.push("bold"); // classes = ["red","bold"]
-    }
-
     return (
       // <StyleRoot>
       <div className="App">
-        {/* <div>
-          <Person
-            name={this.state.persons[0].name}
-            age={this.state.persons[0].age}
-            changed={this.nameChangeHandler}
-          />
-          <Person
-            name={this.state.persons[1].name}
-            age={this.state.persons[1].age}
-            click={this.switchNameHandler.bind(this, "Ga!")}
-          >
-            My Hobbies: Racing
-          </Person>
-        </div> */}
-
         {/* <input
           type="text"
           onChange={this.inputChangedHandler}
@@ -171,16 +108,13 @@ class App extends Component {
         <p>{this.state.userInput}</p>
         <Validation inputLength={this.state.userInput.length} />
         {charList} */}
-        <p className={classes.join(" ")}>This is realy working</p>
 
+        <Cockpit
+          showPersons={this.state.showPersons}
+          persons={this.state.persons}
+          clicked={this.togglePersonsHandler}
+        />
         {persons}
-
-        <StyledButton
-          alt={this.state.showPersons}
-          onClick={this.togglePersonsHandler}
-        >
-          Toggle Persons
-        </StyledButton>
 
         {/* <UserInput
           changed={this.usernameChangedHendler}
@@ -190,13 +124,7 @@ class App extends Component {
         <UserOutput userName={this.state.username} />
         <UserOutput userName="gaga" /> */}
       </div>
-      // </StyleRoot>
     );
-    // return React.createElement(
-    //   "div",
-    //   { className: "App" },
-    //   React.createElement("h1", null, "Hi, I'm a React app")
-    // );
   }
 }
 
