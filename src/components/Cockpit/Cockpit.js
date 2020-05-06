@@ -24,6 +24,7 @@ const cockpit = (props) => {
   }
   return (
     <div>
+      <h1>{props.title}</h1>
       <p className={classes.join(" ")}>This is realy working</p>
       <StyledButton onClick={props.clicked}>Toggle Persons</StyledButton>
     </div>
