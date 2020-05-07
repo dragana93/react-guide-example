@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 const StyledButton = styled.button`
@@ -13,7 +13,11 @@ const StyledButton = styled.button`
     color: black;
   }
 `;
-const cockpit = (props) => {
+const Cockpit = (props) => {
+  useEffect(() => {
+    console.log("[Cockpit.js] useEffect");
+  });
+
   let classes = [];
   if (props.persons.length <= 2) {
     classes.push("red"); // classes = ["red"]
@@ -30,4 +34,4 @@ const cockpit = (props) => {
     </div>
   );
 };
-export default cockpit;
+export default Cockpit;
