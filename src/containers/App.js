@@ -14,6 +14,11 @@ class App extends Component {
   //   userInput: "",
   // };
 
+  constructor(props) {
+    super(props);
+    console.log("[App.js] constructor");
+  }
+
   state = {
     persons: [
       { id: "1", name: "Dragana", age: 27 },
@@ -23,9 +28,18 @@ class App extends Component {
     showPersons: false,
   };
 
-  // state = {
-  //   username: "supergaga",
-  // };
+  static getDerivedStateFromProps(props, state) {
+    console.log("[App.js] getDerivedStateFromProps", props);
+    return state;
+  }
+
+  componentWillMount() {
+    console.log("[App.js] componentWillMount");
+  }
+
+  componentDidMount() {
+    console.log("[App.js] componentDidMount");
+  }
 
   nameChangeHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex((p) => {
@@ -76,6 +90,8 @@ class App extends Component {
   // };
 
   render() {
+    console.log("[App.js] render");
+
     let persons = null;
     if (this.state.showPersons) {
       persons = (
