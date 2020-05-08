@@ -16,7 +16,10 @@ const StyledButton = styled.button`
 const Cockpit = (props) => {
   useEffect(() => {
     console.log("[Cockpit.js] useEffect");
-  });
+    setTimeout(() => {
+      alert("Saved data to cloud");
+    }, 1000);
+  }, []);
 
   let classes = [];
   if (props.persons.length <= 2) {
