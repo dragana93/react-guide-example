@@ -11,15 +11,19 @@ class Persons extends Component {
   //   console.log("[Persons.js] componentWillReceiveProps", props);
   // }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log("[Persons.js] shouldComponentUpdate");
-    if (nextProps.persons !== this.props.persons) {
-      return true;
-    } else {
-      return false;
-    }
-    // return true;
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log("[Persons.js] shouldComponentUpdate");
+  //   if (
+  //     nextProps.persons !== this.props.persons ||
+  //     nextProps.changed !== this.props.changed ||
+  //     nextProps.clicked !== this.props.changed
+  //   ) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  //   // return true;
+  // }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
     console.log("[Persons.js] getSnapshotBeforeUpdate");
