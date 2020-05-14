@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 const StyledButton = styled.button`
@@ -14,11 +14,14 @@ const StyledButton = styled.button`
   }
 `;
 const Cockpit = (props) => {
+  const toggleButtonRef = useRef(null);
+
   useEffect(() => {
     console.log("[Cockpit.js] useEffect");
-    setTimeout(() => {
-      alert("Saved data to cloud");
-    }, 1000);
+    // setTimeout(() => {
+    //   alert("Saved data to cloud");
+    // }, 1000);
+    toggleButtonRef.current.click();
     return () => {
       // clearTimeout(timer);
       console.log("[Cockpit.js] clean up work in useEffect");
@@ -44,7 +47,10 @@ const Cockpit = (props) => {
     <div>
       <h1>{props.title}</h1>
       <p className={classes.join(" ")}>This is realy working</p>
-      <StyledButton onClick={props.clicked}>Toggle Persons</StyledButton>
+      <StyledButton ref={toggleButtonRef} onClick={props.clicked}>
+        Toggle Persons
+      </StyledButton>
+      <button onClick={props.login}>Log in</button>
     </div>
   );
 };

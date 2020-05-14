@@ -32,6 +32,7 @@ class Person extends Component {
     return (
       // <div className="Person" style={style}>
       <React.Fragment>
+        {this.props.isAuth ? <p>Authenticated!</p> : <p>Pleas log in</p>}
         <p key="i1" onClick={this.props.click}>
           I am {this.props.name} and I am {this.props.age} years old!
         </p>
